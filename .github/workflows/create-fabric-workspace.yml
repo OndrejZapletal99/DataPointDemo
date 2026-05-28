@@ -28,14 +28,14 @@ jobs:
       
       - name: Create Fabric Workspace
         run: |
-          fab create WS-fabricUser-11-test.workspace -P capacityname=Trial-20260528T115331Z-Cqa8ZJ8YL0yRXYMkueDxXw
+          fab create WS-fabricUser-12-test.workspace -P capacityname=Trial-20260528T115331Z-Cqa8ZJ8YL0yRXYMkueDxXw
         env:
           FABRIC_USER_ID: ${{ secrets.FABRIC_CLIENT_ID }}
       
       - name: Set Workspace Permissions
         run: |
-          fab acl set WS-fabricUser-11-test.workspace -I 7598817c-573e-41c2-8359-094c935e307f -R contributor --yes
+          fab acl set WS-fabricUser-12-test.workspace -I 7598817c-573e-41c2-8359-094c935e307f -R contributor --yes
       
       - name: Verify Workspace Creation
         run: |
-          fab workspace get 'WS-fabricUser-11-test'
+          fab workspace get 'WS-fabricUser-12-test'
