@@ -1,0 +1,40 @@
+name: Create Fabric Workspace
+on:
+  workflow_dispatch:
+
+jobs:
+  create_workspace:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      
+      - name: Install Fabric CLI
+        run: |
+          pip install fabric-cli
+      
+      - name: Fabric CLI Login with Service Principal
+        run: |
+          fab auth login --u '${{ secrets.FABRIC_CLIENT_ID }}' \
+                       --p '${{ secrets.FABRIC_CLIENT_SECRET }}' \
+                       --tenant '${{ secrets.FABRIC_TENANT_ID }}'
+      
+      - name: Create Fabric Workspace
+        run: |
+          fab workspace create 'WS-fabricUser-01-test'
+        env:
+          FABRIC_USER_ID: ${{ secrets.FABRIC_CLIENT_ID }}
+      
+      - name: Set Workspace Permissions
+        run: |
+          fab acl set ws1.Workspace -I 7598817c-573e-41c2-8359-094c935e307f -R contributor
+      
+      - name: Verify Workspace Creation
+        run: |
+          fab workspace get 'WS-fabricUser-01-test'
