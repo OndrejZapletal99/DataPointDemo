@@ -8,34 +8,33 @@ jobs:
     
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
       
       - name: Set up Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v4
         with:
-          python-version: '3.13'
+          python-version: '3.10'
       
       - name: Install Fabric CLI
         run: |
-          pip install ms-fabric-cli
+          pip install fabric-cli
       
       - name: Fabric CLI Login with Service Principal
         run: |
-          fab config set encryption_fallback_enabled true
           fab auth login --u '${{ secrets.FABRIC_CLIENT_ID }}' \
                        --p '${{ secrets.FABRIC_CLIENT_SECRET }}' \
                        --tenant '${{ secrets.FABRIC_TENANT_ID }}'
       
       - name: Create Fabric Workspace
         run: |
-          fab create WS-fabricUser-12-test.workspace -P capacityname=Trial-20260528T115331Z-Cqa8ZJ8YL0yRXYMkueDxXw
+          fab create WS-fabricUser-007-test.workspace -P capacityname=Trial-20260503T145508Z-co7Z-B3zWk21IzySNnbZBA
         env:
           FABRIC_USER_ID: ${{ secrets.FABRIC_CLIENT_ID }}
       
       - name: Set Workspace Permissions
         run: |
-          echo y | fab acl set WS-fabricUser-12-test.workspace -I 7598817c-573e-41c2-8359-094c935e307f -R contributor
+          fab acl set WS-fabricUser-007-test.workspace -I 7598817c-573e-41c2-8359-094c935e307f -R contributor
       
       - name: Verify Workspace Creation
         run: |
-          fab workspace get 'WS-fabricUser-12-test'
+          fab workspace get 'WS-fabricUser-007-test'
