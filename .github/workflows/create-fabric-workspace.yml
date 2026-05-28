@@ -8,12 +8,12 @@ jobs:
     
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
       
       - name: Set up Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v4
         with:
-          python-version: '3.13'
+          python-version: '3.10'
       
       - name: Install Fabric CLI
         run: |
@@ -27,14 +27,14 @@ jobs:
       
       - name: Create Fabric Workspace
         run: |
-          fab workspace create 'WS-fabricUser-01-test'
+          fab create WS-fabricUser-11-test.workspace -P capacityname=Trial-20260528T115331Z-Cqa8ZJ8YL0yRXYMkueDxXw
         env:
           FABRIC_USER_ID: ${{ secrets.FABRIC_CLIENT_ID }}
       
       - name: Set Workspace Permissions
         run: |
-          fab acl set ws1.Workspace -I 7598817c-573e-41c2-8359-094c935e307f -R contributor
+          fab acl set WS-fabricUser-11-test.workspace -I 7598817c-573e-41c2-8359-094c935e307f -R contributor
       
       - name: Verify Workspace Creation
         run: |
-          fab workspace get 'WS-fabricUser-01-test'
+          fab workspace get 'WS-fabricUser-11-test'
