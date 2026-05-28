@@ -1,16 +1,16 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
-  "name": "021e8d2f8f2445a60685",
+  "name": "05c552a03305aa50e667",
   "position": {
-    "x": 0,
-    "y": 0,
-    "z": 0,
-    "height": 359.45646703573226,
+    "x": 415.77683514271331,
+    "y": 359.45646703573226,
+    "z": 1,
+    "height": 351.17405996117623,
     "width": 657.62312171974975,
-    "tabOrder": 0
+    "tabOrder": 1
   },
   "visual": {
-    "visualType": "columnChart",
+    "visualType": "pieChart",
     "query": {
       "queryState": {
         "Category": {
@@ -23,11 +23,11 @@
                       "Entity": "Product"
                     }
                   },
-                  "Property": "Brand"
+                  "Property": "Category"
                 }
               },
-              "queryRef": "Product.Brand",
-              "nativeQueryRef": "Brand",
+              "queryRef": "Product.Category",
+              "nativeQueryRef": "Category",
               "active": true
             }
           ]
@@ -50,24 +50,6 @@
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Measure": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "Sales"
-                  }
-                },
-                "Property": "Margin"
-              }
-            },
-            "direction": "Descending"
-          }
-        ],
-        "isDefaultSort": true
       }
     },
     "drillFilterOtherVisuals": true
