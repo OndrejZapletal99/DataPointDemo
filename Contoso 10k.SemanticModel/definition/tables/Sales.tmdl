@@ -31,6 +31,11 @@ table Sales
 
 		changedProperty = FormatString
 
+	measure 'Average Age' = AVERAGE(Customer[Age])
+		lineageTag: dee156a2-4c0b-4d15-8ffe-a587e3c470d0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column 'Order Number'
 		dataType: int64
 		isHidden
