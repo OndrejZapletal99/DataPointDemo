@@ -13,11 +13,11 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
-          python-version: '3.10'
+          python-version: '3.13'
       
       - name: Install Fabric CLI
         run: |
-          pip install fabric-cli
+          pip install ms-fabric-cli
       
       - name: Fabric CLI Login with Service Principal
         run: |
