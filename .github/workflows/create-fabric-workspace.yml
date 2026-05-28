@@ -21,6 +21,7 @@ jobs:
       
       - name: Fabric CLI Login with Service Principal
         run: |
+          fab config set encryption_fallback_enabled true
           fab auth login --u '${{ secrets.FABRIC_CLIENT_ID }}' \
                        --p '${{ secrets.FABRIC_CLIENT_SECRET }}' \
                        --tenant '${{ secrets.FABRIC_TENANT_ID }}'
